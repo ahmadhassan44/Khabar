@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import com.loc.newsapp.presentation.onbarding.composables.OnboardingScreen
 import com.loc.newsapp.ui.theme.NewsAppTheme
 
@@ -24,6 +25,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         var keepSplashOnScreen = true
         val delay = 1000L
         installSplashScreen().setKeepOnScreenCondition {

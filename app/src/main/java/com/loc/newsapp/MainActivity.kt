@@ -30,3 +30,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+//this is to seperat the head of main from onboarding screens branch

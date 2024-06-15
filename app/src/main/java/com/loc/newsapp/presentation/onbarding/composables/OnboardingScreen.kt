@@ -24,12 +24,15 @@ import androidx.compose.ui.unit.dp
 import com.loc.newsapp.presentation.commons.NewsButton
 import com.loc.newsapp.presentation.commons.NewsTextButton
 import com.loc.newsapp.presentation.onbarding.Dimens
+import com.loc.newsapp.presentation.onbarding.events.OnBoardingEvent
 import com.loc.newsapp.presentation.onbarding.onboardingPages
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnboardingScreen() {
+fun OnboardingScreen(
+    event:(OnBoardingEvent)->Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -81,7 +84,7 @@ fun OnboardingScreen() {
                 ) {
                     scope.launch {
                         if (pagerState.currentPage == 2) {
-                            //navigate to home screen
+                            event(OnBoardingEvent.saveAppEntry)
                         } else
                             pagerState.animateScrollToPage(pagerState.currentPage + 1)
                     }

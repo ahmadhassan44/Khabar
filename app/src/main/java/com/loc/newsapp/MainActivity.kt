@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,10 +18,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.lifecycleScope
+import com.loc.newsapp.di.AppEntryUseCases
 import com.loc.newsapp.presentation.onbarding.composables.OnboardingScreen
+import com.loc.newsapp.presentation.onbarding.viewmodels.OnBoradingViewModel
 import com.loc.newsapp.ui.theme.NewsAppTheme
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+import kotlin.math.log
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var appEntryUsesCases:AppEntryUseCases
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +44,11 @@ class MainActivity : ComponentActivity() {
         installSplashScreen().setKeepOnScreenCondition {
             keepSplashOnScreen
         }
+        lifecycleScope.launch {
+            appEntryUsesCases.readAppEntry().collect() {
+                Log.d("MainActivity", it.toString())
+            }
+        }
         Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
         setContent {
             NewsAppTheme {
@@ -39,7 +57,10 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        OnboardingScreen()
+                        val viewModel:OnBoradingViewModel= hiltViewModel()
+                        OnboardingScreen() {
+                            viewModel.onEvent(it)
+                        }
                     }
                 }
             }

@@ -9,10 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -23,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.loc.newsapp.presentation.commons.NewsButton
 import com.loc.newsapp.presentation.commons.NewsTextButton
-import com.loc.newsapp.presentation.onbarding.Dimens
+import com.loc.newsapp.presentation.Dimens
 import com.loc.newsapp.presentation.onbarding.events.OnBoardingEvent
 import com.loc.newsapp.presentation.onbarding.onboardingPages
 import kotlinx.coroutines.launch

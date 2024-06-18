@@ -10,6 +10,11 @@ android {
     namespace 'com.loc.newsapp'
     compileSdk 33
 
+    buildFeatures {
+        compose true
+        buildConfig true
+    }
+
     defaultConfig {
         applicationId "com.loc.newsapp"
         minSdk 24
@@ -21,6 +26,10 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        Properties properties=new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        buildConfigField "String","API_KEY","\"${properties.getProperty("API_KEY")}\""
+        buildConfigField "String","BASE_URL","\"${properties.getProperty("BASE_URL")}\""
     }
 
     buildTypes {
@@ -35,9 +44,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '17'
-    }
-    buildFeatures {
-        compose true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.7"

@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -21,6 +22,8 @@ import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import com.loc.newsapp.di.AppEntryUseCases
+import com.loc.newsapp.presentation.navgraph.NavGraph
+import com.loc.newsapp.presentation.navgraph.Route
 import com.loc.newsapp.presentation.onbarding.composables.OnboardingScreen
 import com.loc.newsapp.presentation.onbarding.viewmodels.OnBoradingViewModel
 import com.loc.newsapp.ui.theme.NewsAppTheme
@@ -31,25 +34,16 @@ import kotlin.math.log
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    val viewModel by viewModels<MainViewModel>()
 
-    @Inject
-    lateinit var appEntryUsesCases:AppEntryUseCases
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        var keepSplashOnScreen = true
-        val delay = 1000L
         installSplashScreen().setKeepOnScreenCondition {
-            keepSplashOnScreen
+            viewModel.splashCondition.value
         }
-        lifecycleScope.launch {
-            appEntryUsesCases.readAppEntry().collect() {
-                Log.d("MainActivity", it.toString())
-            }
-        }
-        Handler(Looper.getMainLooper()).postDelayed({ keepSplashOnScreen = false }, delay)
         setContent {
             NewsAppTheme {
                 Scaffold {
@@ -57,10 +51,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        val viewModel:OnBoradingViewModel= hiltViewModel()
-                        OnboardingScreen() {
-                            viewModel.onEvent(it)
-                        }
+                        NavGraph(viewModel.startdestination)
                     }
                 }
             }

@@ -37,7 +37,6 @@ fun Indicator(
                     )
             )
         }
-
     }
 }
 @Preview(showSystemUi = true)

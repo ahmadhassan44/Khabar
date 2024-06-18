@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -15,12 +16,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.loc.newsapp.di.AppEntryUseCases
 import com.loc.newsapp.presentation.navgraph.NavGraph
 import com.loc.newsapp.presentation.navgraph.Route
@@ -46,6 +51,16 @@ class MainActivity : ComponentActivity() {
         }
         setContent {
             NewsAppTheme {
+
+                val isSystemInDarkMode= isSystemInDarkTheme()
+                val systemuiController = rememberSystemUiController()
+
+                SideEffect {
+                    systemuiController.setSystemBarsColor(
+                        color = Color.Transparent,
+                        darkIcons = !isSystemInDarkMode
+                    )
+                }
                 Scaffold {
                     Surface(
                         modifier = Modifier.fillMaxSize(),

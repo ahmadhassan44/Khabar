@@ -36,7 +36,6 @@ fun OnboardingScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .systemBarsPadding()
     ) {
         val pagerState= rememberPagerState(initialPage = 0) {
             onboardingPages.size

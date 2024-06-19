@@ -43,7 +43,7 @@ fun Modifier.shimmerEffect() =composed{
     background(color = colorResource(R.color.shimmer).copy(alpha=alpha))
 }
 @Composable
-fun ArticleCardShimmerEffect(modifier: Modifier = Modifier) {
+fun ArticleCardShimmerEffect(modifier: Modifier) {
     Row(
         modifier = modifier
     ) {
@@ -79,10 +79,5 @@ fun ArticleCardShimmerEffect(modifier: Modifier = Modifier) {
             }
         }
     }
-}
-@Preview
-@Composable
-fun ArticleCardShimmerEffectPreview() {
-    ArticleCardShimmerEffect()
 }
 

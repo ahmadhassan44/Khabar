@@ -31,8 +31,9 @@ fun SearchScreen(
             text = state.searchQuery,
             readOnly = false,
             onCLick = {},
-            onValueChange = {
-                event(SearchEvent.UpdateSearchQuery(it))
+            onValueChange = {arg->
+                event(SearchEvent.UpdateSearchQuery(arg))
+                event(SearchEvent.SearchNews)
                             },
             onSearch = { event(SearchEvent.SearchNews) },
         )

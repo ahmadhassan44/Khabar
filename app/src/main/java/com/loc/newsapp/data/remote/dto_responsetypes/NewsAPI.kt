@@ -12,4 +12,12 @@ interface NewsAPI {
         @Query("sources") sources:String,
         @Query("apiKey") apiKey:String=BuildConfig.API_KEY
     ):NewsResponse
+
+    @GET("everything")
+    suspend fun searchNews(
+        @Query("q") searchNews:String,
+        @Query("page") page:Int,
+        @Query("sources") sources:String,
+        @Query("apiKey") apiKey:String=BuildConfig.API_KEY
+    ):NewsResponse
 }

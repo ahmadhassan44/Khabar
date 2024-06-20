@@ -16,6 +16,8 @@ import com.loc.newsapp.presentation.home.HomeScreen
 import com.loc.newsapp.presentation.home.HomeViewModel
 import com.loc.newsapp.presentation.onbarding.composables.OnboardingScreen
 import com.loc.newsapp.presentation.onbarding.viewmodels.OnBoradingViewModel
+import com.loc.newsapp.presentation.search.SearchScreen
+import com.loc.newsapp.presentation.search.SearchViewModel
 
 @Composable
 fun NavGraph(
@@ -38,7 +40,7 @@ fun NavGraph(
 
         navigation(
             route = Route.NewsNavigation.route,
-            startDestination = Route.HomeScreen.route
+            startDestination = Route.SearchScreen.route
         ) {
             composable(route = Route.HomeScreen.route) {
                 val viewModel:HomeViewModel= hiltViewModel()
@@ -46,6 +48,10 @@ fun NavGraph(
                 HomeScreen(articles) {""
 
                 }
+            }
+            composable(route = Route.SearchScreen.route) {
+                val viewModel:SearchViewModel= hiltViewModel()
+                SearchScreen(viewModel.searchState.value,viewModel::onEvent)
             }
         }
     }

@@ -36,3 +36,25 @@ fun SearchedArticlesList(
         }
     }
 }
+@Composable
+fun SearchedArticlesList(
+    articles:List<Article>,
+    onClick:()->Unit
+) {
+    Spacer(modifier = Modifier.height(Dimens.ExtraSmallPadding2))
+    LazyColumn(
+        modifier=Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(Dimens.MediumPadding1),
+        contentPadding = PaddingValues(all = Dimens.ExtraSmallPadding2)
+    ) {
+        items(articles.size) { index ->
+            articles[index]?.let {
+                ArticleCard(
+                    article = it,
+                    onClick = onClick,
+                    modifier = Modifier
+                )
+            }
+        }
+    }
+}

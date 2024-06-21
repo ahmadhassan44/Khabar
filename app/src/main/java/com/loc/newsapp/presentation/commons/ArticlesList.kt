@@ -91,8 +91,12 @@ fun handlePagingResult(
             EmptyScreen(error)
             false
         }
+        articles.itemCount==0->{
+            EmptyScreen(LoadState.Error(error=Throwable()))
+            false
+        }
         else -> {
-            true
+            true 
         }
     }
 }

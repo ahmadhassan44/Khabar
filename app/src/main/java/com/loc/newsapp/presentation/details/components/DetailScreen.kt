@@ -57,7 +57,7 @@ fun DetailScreen(
             },
             onBackClick = navigateUp,
             onBookmarkClick = {
-                event(DetailEvents.SaveArticle)
+                event(DetailEvents.UpsertDeleteArticle(article))
             }
         )
         LazyColumn(
@@ -83,11 +83,13 @@ fun DetailScreen(
                     color = colorResource(R.color.text_title)
 
                 )
-                Text(
-                    text = article.content,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = colorResource(R.color.body),
-                )
+                article!!.content?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = colorResource(R.color.body),
+                    )
+                }
             }
         }
     }

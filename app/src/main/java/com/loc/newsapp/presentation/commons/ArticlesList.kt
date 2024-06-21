@@ -30,7 +30,7 @@ import com.loc.newsapp.presentation.Dimens
 fun ArticlesList(
     modifier: Modifier,
     articles:LazyPagingItems<Article>,
-    onClick:()->Unit
+    onClick:(Article)->Unit
 ) {
     Spacer(modifier = Modifier.height(Dimens.ExtraSmallPadding2))
     if(handlePagingResult(articles)) {
@@ -62,7 +62,7 @@ fun ArticlesList(
                 articles[index]?.let {
                     ArticleCard(
                         article = it,
-                        onClick = onClick,
+                        onClick = { onClick(it) },
                         modifier = Modifier
                     )
                 }

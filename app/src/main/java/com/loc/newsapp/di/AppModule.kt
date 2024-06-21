@@ -19,6 +19,7 @@ import com.loc.newsapp.domain.usecases.news.GetArticles
 import com.loc.newsapp.domain.usecases.news.GetNews
 import com.loc.newsapp.domain.usecases.news.NewsUseCases
 import com.loc.newsapp.domain.usecases.news.SearchNews
+import com.loc.newsapp.domain.usecases.news.SelectArticle
 import com.loc.newsapp.domain.usecases.news.UpsertArticle
 import com.loc.newsapp.utils.Constants.DB_NAME
 import dagger.Module
@@ -79,7 +80,8 @@ class AppModule {
             searchNews = SearchNews(newsRepository),
             upsertArticle = UpsertArticle(articleDAO),
             deleteArticle = DeleteArticle(articleDAO),
-            getArticles = GetArticles(articleDAO)
+            getArticles = GetArticles(articleDAO),
+            getArticleByUrl = SelectArticle(articleDAO)
         )
     }
 

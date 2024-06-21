@@ -1,5 +1,9 @@
 package com.loc.newsapp.presentation.details.components
 
+import com.loc.newsapp.domain.models.Article
+
 sealed class DetailEvents {
-    object SaveArticle:DetailEvents()
+    data class UpsertDeleteArticle(val article:Article):DetailEvents()
+
+    object RemoveSideEffect:DetailEvents()
 }

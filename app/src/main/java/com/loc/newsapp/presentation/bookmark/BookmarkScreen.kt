@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import com.loc.newsapp.R
+import com.loc.newsapp.domain.models.Article
 import com.loc.newsapp.presentation.Dimens
 import com.loc.newsapp.presentation.commons.SearchedArticlesList
 import com.loc.newsapp.presentation.navgraph.Route
@@ -19,7 +20,7 @@ import com.loc.newsapp.presentation.navgraph.Route
 @Composable
 fun BookmarkScreen(
     state:BookmarkState,
-    navigate:(String)->Unit
+    navigateToDetails:(Article)->Unit
 ) {
     Column(
         modifier = Modifier
@@ -35,7 +36,7 @@ fun BookmarkScreen(
             style = MaterialTheme.typography.headlineLarge,
             color=colorResource(id = R.color.text_title)
         )
-        SearchedArticlesList(state.articles) {navigate(Route.DetailsScreen.route)}
+        SearchedArticlesList(state.articles.reversed(), onClick = navigateToDetails)
     }
 
 }

@@ -70,7 +70,7 @@ fun ArticleCard(
                     .padding(bottom = 4.dp)
             ) {
                 Text(
-                    text = article.source.name,
+                    text = article.source!!.name,
                     style = MaterialTheme.typography.labelSmall,
                     color = colorResource(R.color.display_small),
                     fontWeight = FontWeight.Bold
@@ -80,12 +80,14 @@ fun ArticleCard(
                     tint = colorResource(R.color.body)
                 )
                 Spacer(modifier.width(4.dp))
-                Text(
-                    text = article.publishedAt,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = colorResource(R.color.display_small),
-                    fontWeight = FontWeight.Bold
-                )
+                article!!.publishedAt?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = colorResource(R.color.display_small),
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
 
 

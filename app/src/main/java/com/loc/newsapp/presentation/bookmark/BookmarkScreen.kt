@@ -14,6 +14,7 @@ import androidx.compose.ui.res.colorResource
 import com.loc.newsapp.R
 import com.loc.newsapp.domain.models.Article
 import com.loc.newsapp.presentation.Dimens
+import com.loc.newsapp.presentation.commons.EmptyScreen
 import com.loc.newsapp.presentation.commons.SearchedArticlesList
 import com.loc.newsapp.presentation.navgraph.Route
 
@@ -36,7 +37,10 @@ fun BookmarkScreen(
             style = MaterialTheme.typography.headlineLarge,
             color=colorResource(id = R.color.text_title)
         )
-        SearchedArticlesList(state.articles.reversed(), onClick = navigateToDetails)
+        if(!state.articles.isEmpty())
+            SearchedArticlesList(state.articles.reversed(), onClick = navigateToDetails)
+        else
+            EmptyScreen()
     }
 
 }

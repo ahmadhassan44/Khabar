@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.loc.newsapp.domain.models.Article
 import com.loc.newsapp.presentation.Dimens
 import com.loc.newsapp.presentation.commons.ArticlesList
 import com.loc.newsapp.presentation.commons.SearchBar
@@ -18,7 +19,8 @@ import com.loc.newsapp.presentation.commons.SearchedArticlesList
 @Composable
 fun SearchScreen(
     state: SearchState,
-    event: (SearchEvent) -> Unit
+    event: (SearchEvent) -> Unit,
+    naviagteToDetails:(Article)->Unit,
 ) {
     Column(
         modifier = Modifier
@@ -40,7 +42,7 @@ fun SearchScreen(
         Spacer(modifier = Modifier.height(Dimens.MediumPadding1))
         state.searchResults?.collectAsLazyPagingItems()?.let {
             SearchedArticlesList(it) {
-
+                naviagteToDetails(it)
             }
         }
     }

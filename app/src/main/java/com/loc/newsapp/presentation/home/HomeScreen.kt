@@ -37,7 +37,8 @@ import com.loc.newsapp.presentation.commons.SearchBar
 @Composable
 fun HomeScreen(
     articles: LazyPagingItems<Article>,
-    navigate: (String) -> Unit
+    navigateToSearch: () -> Unit,
+    navigateToDetails: (Article) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -59,13 +60,15 @@ fun HomeScreen(
             text = "",
             readOnly = true,
             onValueChange = {},
-            onCLick = {},
+            onCLick = {
+                      navigateToSearch()
+            },
             onSearch = {},
             modifier = Modifier.padding(horizontal = Dimens.MediumPadding1)
         )
         Spacer(modifier = Modifier.height(Dimens.ExtraSmallPadding2))
         ArticlesList(modifier = Modifier, articles = articles) {
-            //navigate to details screen
+            navigateToDetails(it)
         }
     }
 

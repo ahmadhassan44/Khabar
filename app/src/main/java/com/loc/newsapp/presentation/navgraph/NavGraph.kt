@@ -1,26 +1,14 @@
 package com.loc.newsapp.presentation.navgraph
 
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.loc.newsapp.BuildConfig
-import com.loc.newsapp.presentation.bookmark.BookmarkScreen
-import com.loc.newsapp.presentation.bookmark.BookmarkState
-import com.loc.newsapp.presentation.bookmark.BookmarkViewModel
-import com.loc.newsapp.presentation.home.HomeScreen
-import com.loc.newsapp.presentation.home.HomeViewModel
+import com.loc.newsapp.presentation.newsNavigator.components.NewsNavigator
 import com.loc.newsapp.presentation.onbarding.composables.OnboardingScreen
 import com.loc.newsapp.presentation.onbarding.viewmodels.OnBoradingViewModel
-import com.loc.newsapp.presentation.search.SearchScreen
-import com.loc.newsapp.presentation.search.SearchViewModel
 
 @Composable
 fun NavGraph(
@@ -43,25 +31,12 @@ fun NavGraph(
 
         navigation(
             route = Route.NewsNavigation.route,
-            startDestination = Route.BookmarkScreen.route
+            startDestination = Route.NewsNavigatorScreen.route
         ) {
-            composable(route = Route.HomeScreen.route) {
-                val viewModel:HomeViewModel= hiltViewModel()
-                val articles=viewModel.getNews().collectAsLazyPagingItems()
-                HomeScreen(articles) {""
+            composable(route = Route.NewsNavigatorScreen.route) {
+                NewsNavigator()
+            }
 
-                }
-            }
-            composable(route = Route.SearchScreen.route) {
-                val viewModel:SearchViewModel= hiltViewModel()
-                SearchScreen(viewModel.searchState.value,viewModel::onEvent)
-            }
-            composable(route = Route.BookmarkScreen.route) {
-                val viewModel:BookmarkViewModel= hiltViewModel()
-                BookmarkScreen(viewModel.state.value) {
-
-                }
-            }
         }
     }
 }

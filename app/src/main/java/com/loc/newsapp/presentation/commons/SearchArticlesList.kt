@@ -15,7 +15,7 @@ import com.loc.newsapp.presentation.Dimens
 @Composable
 fun SearchedArticlesList(
     articles:LazyPagingItems<Article>,
-    onClick:()->Unit
+    onClick:(Article)->Unit
 ) {
     Spacer(modifier = Modifier.height(Dimens.ExtraSmallPadding2))
     if(handlePagingResult(articles)) {
@@ -28,7 +28,9 @@ fun SearchedArticlesList(
                 articles[index]?.let {
                     ArticleCard(
                         article = it,
-                        onClick = onClick,
+                        onClick = {
+                                  onClick(it)
+                        },
                         modifier = Modifier
                     )
                 }
@@ -39,7 +41,7 @@ fun SearchedArticlesList(
 @Composable
 fun SearchedArticlesList(
     articles:List<Article>,
-    onClick:()->Unit
+    onClick:(Article)->Unit
 ) {
     Spacer(modifier = Modifier.height(Dimens.ExtraSmallPadding2))
     LazyColumn(
@@ -51,7 +53,7 @@ fun SearchedArticlesList(
             articles[index]?.let {
                 ArticleCard(
                     article = it,
-                    onClick = onClick,
+                    onClick = { onClick(it) },
                     modifier = Modifier
                 )
             }

@@ -22,3 +22,5 @@ This screen pops up whenever the user clicks on an article and shows the entire 
 * **BookmarksScreen:**
 This screen renders those news articles which were bookmarked/saved by the user. The user can view these saved articles while being offline as well
 
+### App demo: https://drive.google.com/file/d/1-vGopyNRhDe4CmhSYhm2v_IEYquym2lj/view?usp=drive_link
+

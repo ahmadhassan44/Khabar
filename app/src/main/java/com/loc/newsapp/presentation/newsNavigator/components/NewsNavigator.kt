@@ -105,7 +105,7 @@ fun NewsNavigator(
         ) {
             composable(route = Route.HomeScreen.route) { backStackEntry ->
                 val viewModel: HomeViewModel = hiltViewModel()
-                val articles = viewModel.getNews().collectAsLazyPagingItems()
+                val articles = viewModel.getnews()!!.collectAsLazyPagingItems()
                 HomeScreen(
                     articles = articles,
                     navigateToSearch = {

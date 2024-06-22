@@ -11,14 +11,14 @@ An android app that displays news articles to users using a REST API.
 
 
 # Features
-## Onboarding Screens
+* **OnboardingScreens:**
 When the user opens the app for the first time, three onboarding screen give the overview of the app
-## HomeScreen
+* **HomeScreen:**
 In this screen the latest news articles for the API are fetched any rendered into a scrollable list
-## SearchScreen
+* **SearchScreen:**
 This screen enables the user to search for specific articles based on keywords
-## DetailsScreen
+* **DetailsScreen:**
 This screen pops up whenever the user clicks on an article and shows the entire content on the article. Additionally, this screen allows user to open the article in some browser, share the article through some other app like whatsapp and bookmark the article.
-## BookmarksScreen
+* **BookmarksScreen:**
 This screen renders those news articles which were bookmarked/saved by the user. The user can view these saved articles while being offline as well
 

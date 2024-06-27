@@ -1,6 +1,10 @@
 package com.loc.newsapp.presentation.commons
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +20,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +39,7 @@ import com.loc.newsapp.domain.models.Article
 import com.loc.newsapp.domain.models.Source
 import com.loc.newsapp.ui.theme.NewsAppTheme
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun ArticleCard(
     modifier: Modifier,
@@ -46,7 +52,9 @@ fun ArticleCard(
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current).data(article.urlToImage).build(),
             null,
-            Modifier.size(96.dp).clip(MaterialTheme.shapes.medium),
+            Modifier
+                .size(96.dp).
+                clip(MaterialTheme.shapes.medium),
             contentScale = ContentScale.Crop
         )
         Column(
@@ -95,24 +103,24 @@ fun ArticleCard(
 
     }
 }
-@Preview(showBackground = true)
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun ArticleCardPreview() {
-    NewsAppTheme(dynamicColor = false) {
-        ArticleCard(
-            article = Article(
-                author = "",
-                content = "",
-                description = "",
-                publishedAt = "2024-06-01T11:12:24Z",
-                source = Source(id = "", name = "BBC"),
-                title = "Her train broke down. Her phone died. And then she met her Saver in a",
-                url = "",
-                urlToImage = "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/11787/production/_124395517_bbcbreakingnewsgraphic.jpg"
-            ),
-            modifier = Modifier,
-            onClick = {}
-        )
-    }
-}
+//@Preview(showBackground = true)
+//@Preview(uiMode = UI_MODE_NIGHT_YES)
+//@Composable
+//fun ArticleCardPreview() {
+//    NewsAppTheme(dynamicColor = false) {
+//        ArticleCard(
+//            article = Article(
+//                author = "",
+//                content = "",
+//                description = "",
+//                publishedAt = "2024-06-01T11:12:24Z",
+//                source = Source(id = "", name = "BBC"),
+//                title = "Her train broke down. Her phone died. And then she met her Saver in a",
+//                url = "",
+//                urlToImage = "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/11787/production/_124395517_bbcbreakingnewsgraphic.jpg"
+//            ),
+//            modifier = Modifier,
+//            onClick = {},
+//        )
+//    }
+//}

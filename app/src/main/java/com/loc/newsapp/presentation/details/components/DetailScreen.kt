@@ -3,6 +3,9 @@ package com.loc.newsapp.presentation.details.components
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -25,6 +28,7 @@ import com.loc.newsapp.R
 import com.loc.newsapp.domain.models.Article
 import com.loc.newsapp.presentation.Dimens
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun DetailScreen(
     article: Article,

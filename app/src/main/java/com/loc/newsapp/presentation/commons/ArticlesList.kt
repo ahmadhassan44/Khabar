@@ -1,5 +1,8 @@
 package com.loc.newsapp.presentation.commons
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +28,7 @@ import com.loc.newsapp.R
 import com.loc.newsapp.domain.models.Article
 import com.loc.newsapp.presentation.Dimens
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalSharedTransitionApi::class)
 @Composable
 fun ArticlesList(
     modifier: Modifier,
@@ -63,7 +66,7 @@ fun ArticlesList(
                     ArticleCard(
                         article = it,
                         onClick = { onClick(it) },
-                        modifier = Modifier
+                        modifier = Modifier,
                     )
                 }
             }

@@ -16,9 +16,6 @@ class HomeViewModel @Inject constructor(
     private  val newsUseCases: NewsUseCases
 ):ViewModel() {
     var news: Flow<PagingData<Article>>?=null
-//    fun getNews() = newsUseCases.getNews(
-//        sources = listOf("bbc-news","abc-news","al-jazeera-english")
-//    ).cachedIn(viewModelScope)
 
     fun getnews() : Flow<PagingData<Article>>? {
         if (news == null) {

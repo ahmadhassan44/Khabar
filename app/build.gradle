@@ -113,4 +113,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:2.5.2"
+
+    //animation
+    implementation("androidx.compose.animation:animation-android:1.7.0-alpha07x")
 }

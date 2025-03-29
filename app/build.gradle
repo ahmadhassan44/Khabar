@@ -5,6 +5,13 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'kotlin-parcelize'
 }
+apply plugin: 'org.kotlin.bsp.plugin'
+
+// Configure your plugin (optional)
+kotlinBsp {
+    outputFormat = 'json'  // or 'xml'
+    outputDirectory = new File("${buildDir}/reports/kotlin-bsp")
+}
 
 android {
     namespace 'com.loc.newsapp'
